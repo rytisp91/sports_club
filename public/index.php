@@ -19,8 +19,12 @@ $config =[
 
 $app = new Application(dirname(__DIR__), $config);
 
-
-
 $app->router->get('/', [SiteController::class, 'home']);
+
+$app->router->get('/comments', [SiteController::class, 'comments']);
+
+$app->router->get('/register', [SiteController::class, 'register']);
+
+$app->router->get('/login', [SiteController::class, 'login']);
 
 $app->run();
