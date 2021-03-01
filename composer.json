@@ -1,0 +1,19 @@
+{
+    "name": "rytaz/almost-lara",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "rytisp91",
+            "email": "68050841+rytisp91@users.noreply.github.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    }
+}
