@@ -1,5 +1,5 @@
 
-<h1><?php echo $pageName; ?> testing </h1>
+<div class="main-photo"></div>
 
 <script>
     const home = document.getElementById('home')
