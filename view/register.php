@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 mx-auto">
-            <div class="card card-body bg-light mt-5">
+            <div class="card card-body bg-light m-3">
                 <h2>Create an account</h2>
                 <form action="" method="post">
                     <div class="form-group">
