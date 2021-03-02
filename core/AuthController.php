@@ -22,6 +22,72 @@ class AuthController extends Controller
         $this->userModel = new UserModel();
     }
 
+    public function register(Request $request)
+    {
+        if ($request->isGet()) :
+            //            $this->setLayout('auth');
+
+            // create data
+            $data = [
+                'name' => '',
+                'surname' => '',
+                'email' => '',
+                'password' => '',
+                'confirmPassword' => '',
+                'number' => '',
+                'address' => '',
+
+                'errors' => [
+                    'nameErr' => '',
+                    'surnameErr' => '',
+                    'emailErr' => '',
+                    'passwordErr' => '',
+                    'confirmPasswordErr' => '',
+                ],
+
+            ];
+
+
+            return $this->render('register', $data);
+        endif;
+
+        if ($request->isPost()) :
+
+            // request is post and we need to pull user data
+            $data = $request->getBody();
+
+            $data['errors']['nameErr'] = $this->vld->validateName($data['name']);
+
+            $data['errors']['surnameErr'] = $this->vld->validateSurname($data['surname']);
+
+            $data['errors']['emailErr'] = $this->vld->validateEmail($data['email'], $this->userModel);
+
+            $data['errors']['passwordErr'] = $this->vld->validatePassword($data['password'], 6, 10);
+
+            $data['errors']['confirmPasswordErr'] = $this->vld->confirmPassword($data['confirmPassword']);
+
+            // if there are no errors
+            if ($this->vld->ifEmptyArr($data['errors'])) :
+
+
+                // hash password // save way to store pass
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                // create user
+                if ($this->userModel->register($data)) {
+                    // success user added
+                    $request->redirect('/login');
+                } else {
+                    die('Something went wrong in adding user to db');
+                }
+
+            endif;
+
+
+            return $this->render('register', $data);
+        endif;
+    }
+
     public function login(Request $request)
     {
         // have ability to change laout
@@ -72,69 +138,6 @@ class AuthController extends Controller
             return $this->render('login', $data);
         endif;
     }
-
-    public function register(Request $request)
-    {
-        if ($request->isGet()) :
-            //            $this->setLayout('auth');
-
-            // create data
-            $data = [
-                'name' => '',
-                'email' => '',
-                'password' => '',
-                'confirmPassword' => '',
-                'errors' => [
-                    'nameErr' => '',
-                    'emailErr' => '',
-                    'passwordErr' => '',
-                    'confirmPasswordErr' => '',
-                ],
-                'currentPage' => 'register',
-            ];
-
-
-            return $this->render('register', $data);
-        endif;
-
-        if ($request->isPost()) :
-
-            // reques is post and we need to pull user data
-            $data = $request->getBody();
-
-            $data['errors']['nameErr'] = $this->vld->validateName($data['name']);
-
-            $data['errors']['emailErr'] = $this->vld->validateEmail($data['email'], $this->userModel);
-
-            $data['errors']['passwordErr'] = $this->vld->validatePassword($data['password'], 6, 10);
-
-            $data['errors']['confirmPasswordErr'] = $this->vld->confirmPassword($data['confirmPassword']);
-
-            // if there are no errors
-            if ($this->vld->ifEmptyArr($data['errors'])) :
-
-
-                // hash password // save way to store pass
-                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
-                // create user
-                if ($this->userModel->register($data)) {
-                    // success user added
-                    // set flash msg
-                    //                    flash('register_success', 'You have registered successfully');
-                    // header("Location: " . URLROOT . "/users/login");
-                    $request->redirect('/login');
-                } else {
-                    die('Something went wrong in adding user to db');
-                }
-
-            endif;
-
-
-            return $this->render('register', $data);
-        endif;
-    }
-
 
     /**
      *  if we have user we save its data in session
