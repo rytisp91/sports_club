@@ -31,12 +31,4 @@ class SiteController extends Controller
         return $this->render('comments', $params);
     }
 
-    public function login()
-    {
-        $params = [
-            'currentPage' => 'login',
-        ];
-
-        return $this->render('login', $params);
-    }
 }
