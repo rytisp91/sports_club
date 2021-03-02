@@ -32,7 +32,7 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item" id="comments">
-                        <a class="nav-link" href="/comments">Comments About Us</a>
+                        <a class="nav-link" href="/comments">Feedback</a>
                     </li>
                     <?php if (!\app\core\Session::isUserLoggedIn()) : ?>
                         <li class="nav-item" id="register">
@@ -45,6 +45,9 @@
                         <li class="nav-item" id="logout">
                             <a class="nav-link" href="/logout">Logout</a>
                         </li>
+                        <span class="navbar-text ml-5">
+                            Logged in as: <?php echo $_SESSION['user_name'] ?>
+                        </span>
                     <?php endif; ?>
                 </ul>
             </div>

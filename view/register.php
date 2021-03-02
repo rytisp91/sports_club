@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="password" name="address" id="address" class="form-control form-control-lg" value="<?php echo $address ?>">
+                        <input type="text" name="address" id="address" class="form-control form-control-lg" value="<?php echo $address ?>">
                     </div>
 
                     <div class="row">

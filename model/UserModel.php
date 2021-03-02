@@ -37,6 +37,7 @@ class UserModel
             return false;
         }
     }
+
     // Register user with given sanitized data
     // @return Boolean
     public function register($data)

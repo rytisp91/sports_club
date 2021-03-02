@@ -120,13 +120,11 @@ class AuthController extends Controller
                 // email was found and password was entered
                 $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
-
                 if ($loggedInUser) {
                     // create session
                     // password match
-                    // die('email and passs match start session immediately');
                     $this->createUserSession($loggedInUser);
-                    $request->redirect('/posts');
+                    $request->redirect('/');
                 } else {
                     $data['errors']['passwordErr'] = 'Wrong password or email';
                     // load view with errors
@@ -138,6 +136,8 @@ class AuthController extends Controller
             return $this->render('login', $data);
         endif;
     }
+
+
 
     /**
      *  if we have user we save its data in session
