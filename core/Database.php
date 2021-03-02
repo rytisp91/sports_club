@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\core;
-
 
 class Database
 {
@@ -31,9 +29,6 @@ class Database
             $this->error = $e->getMessage();
             echo $this->error;
         }
-
-        // create Users table if not exists
-        $this->usersTableInit();
     }
 
     /**
@@ -121,28 +116,4 @@ class Database
     {
         return $this->stmt->rowCount();
     }
-
-
-    /**
-     * We check if there is no users table we create it
-     *
-     * Users tabe is need for authentication
-     */
-    private function usersTableInit()
-    {
-        $sql = "
-        CREATE TABLE IF NOT EXISTS users 
-       ( id INT NOT NULL AUTO_INCREMENT , 
-       name VARCHAR(100) NOT NULL , 
-       email VARCHAR(150) NOT NULL , 
-       password VARCHAR(255) NOT NULL , 
-       created_at TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-       PRIMARY KEY (id)) 
-       ENGINE = InnoDB;
-            ";
-        $this->query($sql);
-        $this->execute();
-    }
-
-
 }
