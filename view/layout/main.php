@@ -53,6 +53,12 @@
 
     {{content}}
 
+    <footer class="footer bg-dark d-flex align-items-center">
+        <div class="container text-center">
+            <span class="text">© <?php echo date('Y'); ?>. Rytis Povilaitis, all rights reserved.</span>
+        </div>
+    </footer>
+
 </body>
 
 </html>
