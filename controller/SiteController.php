@@ -19,9 +19,36 @@ class SiteController extends Controller
     {
         $params = [
             'pageName' => "Sports Club",
+            'currentPage' => 'home',
         ];
 
         return $this->render('home', $params);
     }
 
+    public function comments()
+    {
+        $params = [
+            'currentPage' => 'comments',
+        ];
+
+        return $this->render('comments', $params);
+    }
+
+    public function register()
+    {
+        $params = [
+            'currentPage' => 'register',
+        ];
+
+        return $this->render('register', $params);
+    }
+
+    public function login()
+    {
+        $params = [
+            'currentPage' => 'login',
+        ];
+
+        return $this->render('login', $params);
+    }
 }

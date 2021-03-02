@@ -156,7 +156,6 @@ class Router
         // take layout and replace the {{content}} with the $page content
         return str_replace('{{content}}', $page, $layout);
 
-        //
     }
 
     /**
