@@ -32,9 +32,20 @@ class Validation
     public function validateName($field)
     {
         // Validate Name
-        if (empty($field)) return "Please enter your Name";
+        if (empty($field)) return "Please enter your name.";
 
-        if (!preg_match("/^[a-z ,.'-]+$/i", $field)) return "Name must only contain Name characters";
+        if (!preg_match("/^[a-z ,.'-]+$/i", $field)) return "Name must only contain letters.";
+
+        return ''; //falsy
+    }
+
+    // if field is empty we return message, else we return empty string
+    public function validateSurname($field)
+    {
+        // Validate Name
+        if (empty($field)) return "Please enter your surname.";
+
+        if (!preg_match("/^[a-z ,.'-]+$/i", $field)) return "Name must only contain letters.";
 
         return ''; //falsy
     }
@@ -42,7 +53,7 @@ class Validation
     public function validateEmail($field, &$userModel = null)
     {
         // validate empty
-        if (empty($field)) return "Please enter Your Email";
+        if (empty($field)) return "Please enter your email";
 
         // check email format
         if (filter_var($field, FILTER_VALIDATE_EMAIL) === false) return "Please check your email";
