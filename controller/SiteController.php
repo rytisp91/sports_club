@@ -17,10 +17,7 @@ class SiteController extends Controller
      */
     public function home()
     {
-        $params = [
-            'pageName' => "Sports Club",
-            'currentPage' => 'home',
-        ];
+        $params = [];
 
         return $this->render('home', $params);
     }
@@ -32,15 +29,6 @@ class SiteController extends Controller
         ];
 
         return $this->render('comments', $params);
-    }
-
-    public function register()
-    {
-        $params = [
-            'currentPage' => 'register',
-        ];
-
-        return $this->render('register', $params);
     }
 
     public function login()
