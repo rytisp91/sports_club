@@ -30,7 +30,7 @@
                         <span class='invalid-feedback'><?php echo $errors['confirmPasswordErr'] ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Your phone number:</label>
+                        <label for="number">Your phone number:</label>
                         <input type="text" name="number" id="number" class="form-control form-control-lg" value="<?php echo $number ?>">
                     </div>
                     <div class="form-group">
