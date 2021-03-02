@@ -49,7 +49,7 @@ class Router
     {
         // we search for path arguments
         //"/post/{id}"
-        if (strpos($path, '{')):
+        if (strpos($path, '{')) :
             $startPos = strpos($path, '{');
             $endPos = strpos($path, '}');
             $argName = substr($path, $startPos + 1, $endPos - $startPos - 1);
@@ -68,6 +68,16 @@ class Router
      */
     public function post($path, $callback)
     {
+        // we search for path arguments
+        //"/post/{id}"
+        if (strpos($path, '{')) :
+            $startPos = strpos($path, '{');
+            $endPos = strpos($path, '}');
+            $argName = substr($path, $startPos + 1, $endPos - $startPos - 1);
+            $callback['urlParamName'] = $argName;
+            $path = substr($path, 0, $startPos - 1);
+        endif;
+        
         $this->routes['post'][$path] = $callback;
     }
 
@@ -139,7 +149,6 @@ class Router
          * $callback = [Controller, Method, arg1, arg2 ....]
          */
         return call_user_func($callback, $this->request, $urlParam ?? null);
-
     }
 
     /**
@@ -155,7 +164,6 @@ class Router
 
         // take layout and replace the {{content}} with the $page content
         return str_replace('{{content}}', $page, $layout);
-
     }
 
     /**
@@ -176,7 +184,6 @@ class Router
         include_once Application::$ROOT_DIR . "/view/layout/$layout.php";
         // stop and return buffering
         return ob_get_clean();
-
     }
 
     /**
