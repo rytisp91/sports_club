@@ -51,9 +51,7 @@
         </div>
     </nav>
 
-
     {{content}}
-
 
 </body>
 
