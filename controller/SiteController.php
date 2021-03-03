@@ -6,6 +6,11 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 
+/**
+ * Class SiteController handles Home page get request
+ * 
+ * @package app\controller
+ */
 class SiteController extends Controller
 {
     /**

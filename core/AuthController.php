@@ -14,7 +14,6 @@ use app\model\UserModel;
 class AuthController extends Controller
 {
     public Validation $vld;
-    public Session $sess;
     protected UserModel $userModel;
 
     public function __construct()
@@ -23,6 +22,12 @@ class AuthController extends Controller
         $this->userModel = new UserModel();
     }
 
+    /**
+     * Method to register new user
+     * 
+     * @param Request $request
+     * @return string|string[]
+     */
     public function register(Request $request)
     {
         if ($request->isGet()) :
@@ -88,10 +93,14 @@ class AuthController extends Controller
         endif;
     }
 
+    /**
+     * Method to login user
+     * 
+     * @param Request $request
+     * @return string|string[]
+     */
     public function login(Request $request)
     {
-        // have ability to change laout
-        // $this->setLayout('auth');
 
         if ($request->isGet()) :
 
@@ -141,7 +150,8 @@ class AuthController extends Controller
 
 
     /**
-     *  if we have user we save its data in session
+     * If we have user we save its data in session
+     * 
      * @param $userRow
      */
     public function createUserSession($userRow)
@@ -151,6 +161,11 @@ class AuthController extends Controller
         $_SESSION['user_name'] = $userRow->name;
     }
 
+    /**
+     * Logouts user
+     * 
+     * @param Request $request
+     */
     public function logout(Request $request)
     {
         unset($_SESSION['user_id']);

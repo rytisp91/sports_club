@@ -14,6 +14,11 @@ class CommentModel
         $this->db = Application::$app->db;
     }
 
+    /**
+     * Methods connects to db and gets back comments.
+     * 
+     * @return array|false
+     */
     public function getComments()
     {
         // prepare statement
@@ -30,6 +35,13 @@ class CommentModel
         }
     }
 
+    /**
+     * Method adds new comments to db.
+     * 
+     * @param $author
+     * @param $commentBody
+     * @return bool
+     */
     public function addComment($author, $commentBody)
     {
         // get data and add comment using data

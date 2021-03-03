@@ -14,8 +14,13 @@ class UserModel
         $this->db = Application::$app->db;
     }
 
-    // finds user by given email
-    // @return Boolean
+
+    /**
+     * Method searches for user email in db.
+     * 
+     * @param $email
+     * @return bool
+     */
     public function findUserByEmail($email)
     {
         // check if the given email is in data base
@@ -36,8 +41,13 @@ class UserModel
         }
     }
 
-    // Register user with given sanitized data
-    // @return Boolean
+
+    /**
+     * Method registers new user.
+     * 
+     * @param $data
+     * @return bool
+     */
     public function register($data)
     {
         // prepare statment
@@ -60,9 +70,14 @@ class UserModel
         }
     }
 
-    // Checks in the database for the email and password
-    // tries to verify password
-    // return row or false
+
+    /**
+     * Method logins user in.
+     * 
+     * @param $email
+     * @param $notHashedPass
+     * @return false|mixed
+     */
     public function login($email, $notHashedPass)
     {
         // get the row whith given email
@@ -86,8 +101,13 @@ class UserModel
         }
     }
 
-    // will return user data row if found
-    // return false if not found
+
+    /**
+     * Method searches for users in db by id.
+     * 
+     * @param $id
+     * @return false|mixed
+     */
     public function getUserById($id)
     {
         $this->db->query("SELECT name, email FROM users WHERE id = :id");
