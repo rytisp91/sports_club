@@ -14,6 +14,7 @@ use app\model\UserModel;
 class AuthController extends Controller
 {
     public Validation $vld;
+    public Session $sess;
     protected UserModel $userModel;
 
     public function __construct()
@@ -25,7 +26,6 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         if ($request->isGet()) :
-            //            $this->setLayout('auth');
 
             // create data
             $data = [
@@ -94,6 +94,7 @@ class AuthController extends Controller
         // $this->setLayout('auth');
 
         if ($request->isGet()) :
+
             $data = [
                 'email' => '',
                 'password' => '',
