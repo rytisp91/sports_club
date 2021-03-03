@@ -30,7 +30,6 @@
     </div>
 </div>
 
-
 <script>
     const login = document.getElementById('login')
     login.classList.add('active')
