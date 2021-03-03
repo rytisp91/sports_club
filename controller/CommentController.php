@@ -7,8 +7,16 @@ use app\core\Controller;
 use app\core\Request;
 use app\model\CommentModel;
 
+/**
+ * Class CommentController
+ * 
+ * Controlls rendering of comments and handles API part of comments
+ * 
+ * @package app\controller
+ */
 class CommentController extends Controller
 {
+ 
     protected CommentModel $commentModel;
 
     public function __construct()
@@ -16,6 +24,12 @@ class CommentController extends Controller
         $this->commentModel = new CommentModel();
     }
 
+    /**
+     * Renders comments when entering comments section first time
+     * 
+     * @param Request $request
+     * @return string|string[]
+     */
     public function renderComments(Request $request)
     {
         if ($request->isGet()) :
@@ -30,6 +44,11 @@ class CommentController extends Controller
     }
 
 
+    /**
+     * Renders comments after user logins and validation is completed
+     * 
+     * @param Request $request
+     */
     public function getApiComments(Request $request)
     {
         if ($request->isPost()) :

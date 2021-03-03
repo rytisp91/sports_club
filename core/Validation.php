@@ -4,11 +4,12 @@ namespace app\core;
 class Validation
 {
     private $password;
-    // private $errors = []
-
-
-    // check if every array value is empty
-    // @return boolean
+    /**
+     * Checks if values of array is empty
+     * 
+     * @param $arr
+     * @return bool
+     */
     public function ifEmptyArr($arr)
     {
         // check if all values of array is empty
@@ -20,12 +21,25 @@ class Validation
         return true;
     }
 
+    /**
+     * Checks if field is empty
+     * 
+     * @param $field
+     * @param $msg
+     * @return mixed|string
+     */
     public function validateEmpty($field, $msg)
     {
         return empty($field) ? $msg : '';
     }
 
-    // if field is empty we return message, else we return empty string
+
+    /**
+     * Checks if name fiels is empty and returns message if so
+     * 
+     * @param $field
+     * @return string
+     */
     public function validateName($field)
     {
         // Validate Name
@@ -36,7 +50,13 @@ class Validation
         return ''; //falsy
     }
 
-    // if field is empty we return message, else we return empty string
+
+    /**
+     * Checks if surname fiels is empty and returns message if so
+     * 
+     * @param $field
+     * @return string
+     */
     public function validateSurname($field)
     {
         // Validate Name
@@ -47,6 +67,14 @@ class Validation
         return ''; //falsy
     }
 
+    /**
+     * Checks if email field is empty. If so returns error. 
+     * Validates email if errors gives feedback.
+     * 
+     * @param $field
+     * @param null $userModel
+     * @return string
+     */
     public function validateEmail($field, &$userModel = null)
     {
         // validate empty
@@ -63,6 +91,14 @@ class Validation
         return '';
     }
 
+    /**
+     * Checks if email field is empty on login if so gives error.
+     * Validates email and runs searching of email on db.
+     * 
+     * @param $field
+     * @param $userModel
+     * @return string
+     */
     public function validateLoginEmail($field, &$userModel)
     {
         // validate empty
@@ -77,6 +113,14 @@ class Validation
         return '';
     }
 
+    /**
+     * Password validation method.
+     * 
+     * @param $passField
+     * @param $min
+     * @param $max
+     * @return string
+     */
     public function validatePassword($passField, $min, $max)
     {
         // validate empty
@@ -103,6 +147,12 @@ class Validation
         return '';
     }
 
+    /**
+     * Method checks password confirmation when registering.
+     * 
+     * @param $repeatField
+     * @return string
+     */
     public function confirmPassword($repeatField)
     {
         // validate empty
