@@ -17,15 +17,15 @@
     <?php if (!\app\core\Session::isUserLoggedIn()) : ?>
         <p class="text-center">If you want to leave comment - please <a href="/login">login</a>. </p>
     <?php else : ?>
-       
-            <form id="add-comment-form" action="" method="post">
-                <div class="form-group">
-                    <textarea id="comment-body" name="commentBody" class="form-control" placeholder="Add comment"></textarea>
-                    <span class='invalid-feedback'></span>
-                </div>
-                <button id='submit-btn' type="submit" class='btn btn-dark'>Comment</button>
-            </form>
-   
+
+        <form id="add-comment-form" action="" method="post">
+            <div class="form-group">
+                <textarea id="comment-body" name="commentBody" class="form-control" placeholder="Add comment"></textarea>
+                <span class='invalid-feedback'></span>
+            </div>
+            <button id='submit-btn' type="submit" class='btn btn-dark'>Comment</button>
+        </form>
+
     <?php endif; ?>
 </div>
 
@@ -35,7 +35,10 @@
     const commentsCont = document.getElementById('usersComments');
     const textarea = document.getElementById('comment-body');
 
-    addCommentFormEl.addEventListener('submit', addCommentAsync);
+    if (addCommentFormEl) {
+        addCommentFormEl.addEventListener('submit', addCommentAsync);
+    }
+
 
     function addCommentAsync(event) {
         event.preventDefault();
